@@ -24,8 +24,32 @@
         <span class="fa fa-sync-alt"></span>
       </article>
 
+      <!-- Form -->
+
+      <form id="to-do-form">
+        <input
+          id="to-do-input"
+          class="to-do-add"
+          type="text"
+          placeholder="Add your task ..."
+        />
+
+        <button
+          id="to-do-submit"
+          type="submit"
+          title="click this or press enter to submit"
+        >
+          <i class="fas fa-arrow-left"></i>
+        </button>
+      </form>
+
       <!-- To do list -->
       <ul id="to-do-list"></ul>
+
+      <!-- Clear completed button -->
+      <button class="clear-completed" id="clear-completed">
+        Clear all completed
+      </button>
     </div>
   </body>
 </html>
