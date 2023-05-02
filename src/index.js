@@ -5,7 +5,7 @@ const taskList = [
   { description: 'Play football', completed: false },
   { description: 'Drink milk', completed: false },
   { description: 'Visit friends', completed: false },
-]
+];
 
 const toDoList = document.getElementById('to-do-list');
 
