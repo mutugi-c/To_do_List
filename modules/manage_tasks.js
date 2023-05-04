@@ -28,5 +28,11 @@ class ManageTasks {
     this.taskArr[index].description = newDescription;
     this.storeTasksInLocalStorage();
   }
+
+  completedTask(index, completed) {
+    this.taskArr[index].completed = completed;
+    this.storeTasksInLocalStorage();
+  }
+
 }
 
