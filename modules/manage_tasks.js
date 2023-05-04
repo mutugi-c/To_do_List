@@ -37,5 +37,18 @@ class ManageTasks {
   storeTasksInLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(this.taskArr));
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  loadTasksFromLocalStorage() {
+    const storedTasks = JSON.parse(window.localStorage.getItem('tasks'));
+    if (storedTasks) {
+      return storedTasks.map((task) => {
+        task.index += 1;
+        return task;
+      });
+    }
+    return [];
+  }
 }
 
+export default ManageTasks;
