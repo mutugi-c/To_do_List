@@ -23,5 +23,10 @@ class ManageTasks {
     });
     this.storeTasksInLocalStorage();
   }
+
+  editTask(index, newDescription) {
+    this.taskArr[index].description = newDescription;
+    this.storeTasksInLocalStorage();
+  }
 }
 
