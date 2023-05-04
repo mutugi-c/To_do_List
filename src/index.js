@@ -65,4 +65,18 @@ function populateTaskList(arr) {
   });
 }
 
+// Add event listener for submission
+toDoForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const taskDescription = toDoInput.value.trim();
+  if (taskDescription !== '') {
+    taskManager.addTask(taskDescription);
+
+    toDoInput.value = '';
+    const newTask = [taskManager.taskArr[taskManager.taskArr.length - 1]];
+    populateTaskList(newTask);
+  }
+});
+
 populateTaskList(taskManager.taskArr);
