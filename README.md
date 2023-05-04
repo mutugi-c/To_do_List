@@ -8,6 +8,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -24,19 +25,24 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Webpack-Boilerplate <a name="about-project"></a>
+# 📖 To Do list <a name="about-project"></a>
 
-**Webpack-Boilerplate** is a project to build a simple yet powerful webpack boilerplate, which can later be used as a starting point in projects.
+**To Do list** is a project to build a simple HTML list of To Do tasks.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
 <details>
-  <summary>Client</summary>
+  <summary>Markup</summary>
   <ul>
-    <li><a href="https://developer.mozilla.org/es/docs/Learn/HTML">HTML</a></li>
-    <li><a href="https://developer.mozilla.org/es/docs/Web/CSS">CSS</a></li>
+    <li><a href="https://html5.org/">HTML5</a></li>
+  </ul>
+</details>
+
+<details>
+<summary>Interaction</summary>
+  <ul>
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li>
   </ul>
 </details>
@@ -45,9 +51,15 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **Uses HtmlWebpackPlugin to automatically create the index.html file in the /dist directory**
-- **Style-loader and css-loader added to module configuration**
-- **Webpack dev server set up**
+- **Easy navigation**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LIVE DEMO -->
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+- - [Live Demo Link](https://mutugi-c.github.io/To_do_list/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -59,7 +71,7 @@ To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-To use this boilerplate, you need an IDE such as VS code, sublime, atom e.t.c:
+In order to run this project you need an IDE such as VS code, sublime, atom e.t.c:
 
 ### Setup
 
@@ -68,51 +80,50 @@ Clone this repository to your desired folder:
 Example commands:
 
 ```sh
- $ cd your-folder
- $ git clone https://github.com/mutugi-c/Webpack-boilerplate.git
+ $ cd my-folder
+ $ git clone git@github.com:mutugi-c/To_do_list.git
 ```
 
 ### Install
 
-To work with this boilerplate, you need to initialize npm, install webpack locally, and install the webpack-cli (the tool used to run webpack on the command line):
+Install git to work on this project with:
 
 ```sh
-   $ npm init -y
+   $ git config --global user.name "First Last"
 
-   $ npm install webpack webpack-cli --save-dev
+   $ git config --global user.email "example@example.com"
 ```
 
 ### Usage
 
-To build during development or for production, run:
+To run the project have Node.js installed, execute the following command:
 
 ```sh
-  $ npm run build
-```
-
-otherwise, you can use the local dev server using:
-
-```sh
-  $ npm start
+  $ npm install http-server -g
+  $ http-server
 ```
 
 Go to your browser and type localhost:8080. Your Application should run
 
 ### Run tests
 
-- The linters within the project help test for good code practice.
-- To run tests, run the HTML document in Google Chrome and right-click the HTML element you want to inspect. Click on "Inspect" and you will have the tools to run, analyze, and even debug the code
+To run tests, run the HTML document in Google Chrome and right-click the HTML element you want to inspect. Click on "Inspect" and you will have the tools to run, analyze, and even debug the code
 
 ### Deployment
 
 You can deploy this project using build tools such as webpack, Rollup, Parcel, e.t.c or even deploy using Github pages:
 
-Example: To build for production with github pages:
+Example: To build for production with parcel, use the folowing commands:
 
-- Run npm run build to update the dist if necessary.
-- Deploy your website using GitHub Pages.
-- NOTE: as GH pages are meant to deploy static pages you need to go to the dist directory to see your app:
-  https://<GH_username>.github.io/<GH_repo_name>/dist/.
+- Initialise npm package
+- Install parcel
+- Build for production
+
+```sh
+ $ npm init -y
+ $ npm i -g parcel-bundler
+ $ parcel build index.html
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -130,7 +141,7 @@ Example: To build for production with github pages:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **Any configurations that may be deemed necessary**
+- **An improved user interface**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -156,7 +167,7 @@ If you like this project, give a ⭐️.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank [Microverse](https://www.microverse.org/go?utm_source=google&utm_medium=paid&utm_campaign=search_europe&gclid=CjwKCAjwq-WgBhBMEiwAzKSH6IxBgyh61fi4WRuQvUsaGigJMuzzc9177uC6mhMwXeriUDendiuvChoC20wQAvD_BwE) for the opportunity to work on this project.
+I would like to thank [Microverse](https://www.microverse.org/go?utm_source=google&utm_medium=paid&utm_campaign=search_europe&gclid=CjwKCAjwq-WgBhBMEiwAzKSH6IxBgyh61fi4WRuQvUsaGigJMuzzc9177uC6mhMwXeriUDendiuvChoC20wQAvD_BwE) for the opportunity work on this project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
