@@ -34,5 +34,8 @@ class ManageTasks {
     this.storeTasksInLocalStorage();
   }
 
+  storeTasksInLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(this.taskArr));
+  }
 }
 
