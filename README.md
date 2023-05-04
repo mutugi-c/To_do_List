@@ -81,7 +81,7 @@ Example commands:
 
 ```sh
  $ cd my-folder
- $ git clone git@github.com:mutugi-c/To_do_list.git
+ $ git clone git@github.com:mutugi-c/To_do_List.git
 ```
 
 ### Install
@@ -96,13 +96,18 @@ Install git to work on this project with:
 
 ### Usage
 
-To run the project have Node.js installed, execute the following command:
+To run the project have Node.js installed, and execute the following commands to initialize npm, install webpack locally, and install the webpack-cli (the tool used to run webpack on the command line)::
 
 ```sh
-  $ npm install http-server -g
-  $ http-server
+  $ npm init -y
+  $ npm install webpack webpack-cli --save-dev
 ```
+You can also use live reloading with webpack-dev-server using the following commands to install the web server, and run it: 
 
+```sh
+  $ npm install --save-dev webpack-dev-server
+  $ npm start
+```
 Go to your browser and type localhost:8080. Your Application should run
 
 ### Run tests
@@ -113,16 +118,15 @@ To run tests, run the HTML document in Google Chrome and right-click the HTML el
 
 You can deploy this project using build tools such as webpack, Rollup, Parcel, e.t.c or even deploy using Github pages:
 
-Example: To build for production with parcel, use the folowing commands:
+Example: To build for production with webpack, use the folowing commands:
 
 - Initialise npm package
-- Install parcel
+- ensure that webpack is installed
 - Build for production
 
 ```sh
  $ npm init -y
- $ npm i -g parcel-bundler
- $ parcel build index.html
+ $ npm run build
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
