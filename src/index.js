@@ -54,6 +54,12 @@ function populateTaskList(arr) {
       }
     });
 
+    // Add event listener to trash icon
+    toDoItem.querySelector('.trash-icon').addEventListener('click', () => {
+      taskManager.removeTask(task.index);
+      toDoItem.remove();
+    });
+
   });
 }
 
