@@ -1,53 +1,44 @@
 class ManageTasks {
   constructor() {
-    this.taskArr = this.loadTasksFromLocalStorage();
+    this.taskArr = JSON.parse(localStorage.getItem('tasks')) || [];
   }
 
-  addTask(taskDescrption) {
+  addTask(description) {
     const newTask = {
-      description: taskDescrption,
+      description,
       completed: false,
       index: this.taskArr.length + 1,
     };
-
     this.taskArr.push(newTask);
-    this.storeTasksInLocalStorage();
+    this.saveTasks();
   }
 
   removeTask(index) {
     this.taskArr.splice(index, 1);
-
-    // Update remaining properties' indices
-    this.taskArr.forEach((task, i) => {
-      task.index = i + 1;
-    });
-    this.storeTasksInLocalStorage();
+    this.updateIndexes();
+    this.saveTasks();
   }
 
   editTask(index, newDescription) {
-    this.taskArr[index].description = newDescription;
-    this.storeTasksInLocalStorage();
-  }
-
-  completedTask(index, completed) {
-    this.taskArr[index].completed = completed;
-    this.storeTasksInLocalStorage();
-  }
-
-  storeTasksInLocalStorage() {
-    localStorage.setItem('tasks', JSON.stringify(this.taskArr));
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  loadTasksFromLocalStorage() {
-    const storedTasks = JSON.parse(window.localStorage.getItem('tasks'));
-    if (storedTasks) {
-      return storedTasks.map((task) => {
-        task.index += 1;
-        return task;
-      });
+    if (this.taskArr[index]) {
+      this.taskArr[index].description = newDescription;
+      this.saveTasks();
     }
-    return [];
+  }
+
+  completeTask(index, completed) {
+    this.taskArr[index].completed = completed;
+    this.saveTasks();
+  }
+
+  updateIndexes() {
+    this.taskArr.forEach((task, i) => {
+      task.index = i + 1;
+    });
+  }
+
+  saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(this.taskArr));
   }
 }
 
