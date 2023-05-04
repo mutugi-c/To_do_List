@@ -60,6 +60,8 @@ function populateTaskList(arr) {
       toDoItem.remove();
     });
 
+    toDoItem.dataset.index = taskManager.taskArr.indexOf(task);
+
   });
 }
 
