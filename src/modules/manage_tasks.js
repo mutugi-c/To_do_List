@@ -1,6 +1,8 @@
 class ManageTasks {
   constructor() {
     this.taskArr = JSON.parse(localStorage.getItem('tasks')) || [];
+    this.taskArr.forEach((task) => (task.completed = false));
+    this.saveTasks();
   }
 
   addTask(description) {

@@ -1,6 +1,5 @@
 import './styles.css';
 import ManageTasks from './modules/manage_tasks.js';
-import clearCompleted from './modules/clear_completed.js';
 import toggleCompleted from './modules/toggle_completed.js';
 
 const taskManager = new ManageTasks([]);
@@ -14,10 +13,10 @@ function populateTaskList(arr) {
     const toDoItem = document.createElement('li');
     toDoItem.classList.add('to-do-item');
     toDoItem.innerHTML = `
-    <input type="checkbox" class="check-button" />
-    <span class="task-description" contenteditable="true">${task.description}</span>
-    <span class="fas fa-ellipsis-v"></span>
-    <span class="fas fa-trash trash-icon hide"></span>
+    <input type='checkbox' class='check-button' />
+    <span class='task-description' contenteditable='true'>${task.description}</span>
+    <span class='fas fa-ellipsis-v'></span>
+    <span class='fas fa-trash trash-icon hide'></span>
     `;
     toDoList.appendChild(toDoItem);
 
@@ -64,8 +63,8 @@ function populateTaskList(arr) {
 
     // Add event listener to check-button
     const checkButton = toDoItem.querySelector('.check-button');
-    checkButton.addEventListener('click', () => {
-      const index = parseInt(toDoItem.dataset.index, 10);
+    checkButton.addEventListener('change', () => {
+      const index = toDoItem.dataset.index;
       toggleCompleted(toDoList, taskManager, index);
     });
 
@@ -76,11 +75,18 @@ function populateTaskList(arr) {
 // Call function to update completed status
 toggleCompleted(toDoList, taskManager);
 
-// Add event listeners for completed clear button
+const clearCompleted = () => {
+  const completedTasks = taskManager.taskArr.filter((task) => task.completed);
+  completedTasks.forEach((task) => taskManager.removeTask(task.index));
+  document
+    .querySelectorAll('.completed')
+    .forEach((completedTask) => completedTask.remove());
+  taskManager.saveTasks();
+  taskManager.updateIndexes();
+};
+
 const clearCompletedButton = document.getElementById('clear-completed');
-clearCompletedButton.addEventListener('click', () => {
-  clearCompleted(toDoList, taskManager);
-});
+clearCompletedButton.addEventListener('click', clearCompleted);
 
 // Add event listener for submission
 toDoForm.addEventListener('submit', (event) => {

@@ -1,19 +1,17 @@
-// Update completed status
 const toggleCompleted = (toDoList, taskManager, index) => {
-  const toDoItem = toDoList.querySelector(`[data-index="${index}"]`);
+  const toDoItem = toDoList.querySelector(`[data-index='${index}']`);
   if (!toDoItem) {
     return;
   }
   const checkButton = toDoItem.querySelector('.check-button');
-  if (checkButton.checked) {
+  const completed = checkButton.checked;
+  if (completed) {
     toDoItem.classList.add('completed');
-    taskManager.completeTask(index, true);
-    taskManager.saveTasks();
   } else {
     toDoItem.classList.remove('completed');
-    taskManager.completeTask(index, false);
-    taskManager.saveTasks();
   }
+  taskManager.completeTask(index, completed);
+  taskManager.saveTasks();
 };
 
 export default toggleCompleted;
