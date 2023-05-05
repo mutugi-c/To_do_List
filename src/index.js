@@ -11,59 +11,69 @@ const taskManager = new ManageTasks([]);
 
 function populateTaskList(arr) {
   arr.forEach((task) => {
-    const toDoItem = document.createElement('li');
-    toDoItem.classList.add('to-do-item');
-    toDoItem.innerHTML = `
+    const toDoItem = createToDoItem(task);
+    toDoList.appendChild(toDoItem);
+    addTaskDescriptionEventListener(toDoItem, task);
+    addActiveEventListener(toDoItem);
+    addTrashIconEventListener(toDoItem, task);
+    addIndexAttribute(toDoItem, task);
+  });
+}
+
+function createToDoItem(task) {
+  const toDoItem = document.createElement('li');
+  toDoItem.classList.add('to-do-item');
+  toDoItem.innerHTML = `
     <input type="checkbox" class="check-button" />
     <span class="task-description" contenteditable="true">${task.description}</span>
     <span class="fas fa-ellipsis-v"></span>
     <span class="fas fa-trash trash-icon hide"></span>
-    `;
-    toDoList.appendChild(toDoItem);
+  `;
+  return toDoItem;
+}
 
-    const taskDescription = toDoItem.querySelector('.task-description');
-
-    // Save edited task on enter key press
-    taskDescription.addEventListener('keypress', (event) => {
-      if (event.key === 'Enter') {
-        const { index } = task; // object destructuring due to ESLint
-        const newDescription = taskDescription.textContent.trim().substring(2);
-        taskManager.editTask(index, newDescription);
-        // Remove focus from the edited element
-        taskDescription.blur();
-      }
-    });
-
-    // Change list item behaviour on click
-    toDoItem.addEventListener('click', () => {
-      if (!toDoItem.classList.contains('active')) {
-        // Remove the 'active' class from all other items
-        document.querySelectorAll('.to-do-item').forEach((item) => {
-          item.classList.remove('active');
-          item.querySelector('.fa-ellipsis-v').classList.remove('hide');
-          item.querySelector('.trash-icon').classList.add('hide');
-          item.style.background = '';
-        });
-
-        // Add the 'active' class to the latest selected item
-        toDoItem.classList.add('active');
-        toDoItem.querySelector('.fa-ellipsis-v').classList.add('hide');
-        toDoItem.querySelector('.trash-icon').classList.remove('hide');
-        toDoItem.style.background = '#fffbc8';
-
-        // Focus on the task description element for editing
-        taskDescription.focus();
-      }
-    });
-
-    // Add event listener to trash icon
-    toDoItem.querySelector('.trash-icon').addEventListener('click', () => {
-      taskManager.removeTask(task.index);
-      toDoItem.remove();
-    });
-
-    toDoItem.dataset.index = taskManager.taskArr.indexOf(task);
+function addTaskDescriptionEventListener(toDoItem, task) {
+  const taskDescription = toDoItem.querySelector('.task-description');
+  taskDescription.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+      const { index } = task;
+      const newDescription = taskDescription.textContent.trim().substring(2);
+      taskManager.editTask(index, newDescription);
+      taskDescription.blur();
+    }
   });
+}
+
+function addActiveEventListener(toDoItem) {
+  toDoItem.addEventListener('click', () => {
+    if (!toDoItem.classList.contains('active')) {
+      document.querySelectorAll('.to-do-item').forEach((item) => {
+        item.classList.remove('active');
+        item.querySelector('.fa-ellipsis-v').classList.remove('hide');
+        item.querySelector('.trash-icon').classList.add('hide');
+        item.style.background = '';
+      });
+
+      toDoItem.classList.add('active');
+      toDoItem.querySelector('.fa-ellipsis-v').classList.add('hide');
+      toDoItem.querySelector('.trash-icon').classList.remove('hide');
+      toDoItem.style.background = '#fffbc8';
+
+      const taskDescription = toDoItem.querySelector('.task-description');
+      taskDescription.focus();
+    }
+  });
+}
+
+function addTrashIconEventListener(toDoItem, task) {
+  toDoItem.querySelector('.trash-icon').addEventListener('click', () => {
+    taskManager.removeTask(task.index);
+    toDoItem.remove();
+  });
+}
+
+function addIndexAttribute(toDoItem, task) {
+  toDoItem.dataset.index = taskManager.taskArr.indexOf(task);
 }
 
 // Add event listener for submission
