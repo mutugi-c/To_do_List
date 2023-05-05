@@ -14,7 +14,7 @@ class ManageTasks {
   }
 
   removeTask(index) {
-    this.taskArr.splice(index, 1);
+    this.taskArr = this.taskArr.filter((task) => task.index !== index);
     this.updateIndexes();
     this.saveTasks();
   }
