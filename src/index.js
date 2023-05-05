@@ -1,24 +1,12 @@
 import './styles.css';
 import ManageTasks from './modules/manage_tasks.js';
-import { toggleCompleted } from './modules/toggle_completed.js';
-import { clearCompleted } from './modules/clear_completed';
+import toggleCompleted from './modules/toggle_completed.js';
+import clearCompleted from './modules/clear_completed.js';
 
 const toDoList = document.getElementById('to-do-list');
 const toDoForm = document.getElementById('to-do-form');
 const toDoInput = document.getElementById('to-do-input');
-
 const taskManager = new ManageTasks([]);
-
-function populateTaskList(arr) {
-  arr.forEach((task) => {
-    const toDoItem = createToDoItem(task);
-    toDoList.appendChild(toDoItem);
-    addTaskDescriptionEventListener(toDoItem, task);
-    addActiveEventListener(toDoItem);
-    addTrashIconEventListener(toDoItem, task);
-    addIndexAttribute(toDoItem, task);
-  });
-}
 
 function createToDoItem(task) {
   const toDoItem = document.createElement('li');
@@ -74,6 +62,17 @@ function addTrashIconEventListener(toDoItem, task) {
 
 function addIndexAttribute(toDoItem, task) {
   toDoItem.dataset.index = taskManager.taskArr.indexOf(task);
+}
+
+function populateTaskList(arr) {
+  arr.forEach((task) => {
+    const toDoItem = createToDoItem(task);
+    toDoList.appendChild(toDoItem);
+    addTaskDescriptionEventListener(toDoItem, task);
+    addActiveEventListener(toDoItem);
+    addTrashIconEventListener(toDoItem, task);
+    addIndexAttribute(toDoItem, task);
+  });
 }
 
 // Add event listener for submission
