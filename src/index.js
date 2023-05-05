@@ -1,7 +1,7 @@
 import './styles.css';
 import ManageTasks from './modules/manage_tasks.js';
-import clearCompleted from './modules/clear_completed.js'
-import toggleCompleted from './modules/toggle_completed.js'
+import clearCompleted from './modules/clear_completed.js';
+import toggleCompleted from './modules/toggle_completed.js';
 
 const taskManager = new ManageTasks([]);
 

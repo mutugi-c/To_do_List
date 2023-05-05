@@ -30,8 +30,6 @@ class ManageTasks {
     if (this.taskArr[index]) {
       this.taskArr[index].completed = completed;
       this.saveTasks();
-    } else {
-      console.error(`Invalid index ${index} for completeTask`);
     }
   }
 
