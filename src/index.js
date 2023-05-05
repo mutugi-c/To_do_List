@@ -80,6 +80,12 @@ toDoForm.addEventListener('submit', (event) => {
   }
 });
 
+// Add event listeners for completed clear button
+const clearCompletedButton = document.getElementById('clear-completed');
+clearCompletedButton.addEventListener('click', () => {
+  clearCompleted(toDoList, taskManager);
+});
+
 toggleCompleted(toDoList, taskManager);
 
 populateTaskList(taskManager.taskArr);
