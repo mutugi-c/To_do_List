@@ -7,12 +7,12 @@ const toggleCompleted = (toDoList, taskManager, index) => {
   const checkButton = toDoItem.querySelector('.check-button');
   if (checkButton.checked) {
     toDoItem.classList.add('completed');
-    taskManager.completedTask(index, true);
-    taskManager.storeTasksInLocalStorage();
+    taskManager.completeTask(index, true);
+    taskManager.saveTasks();
   } else {
     toDoItem.classList.remove('completed');
-    taskManager.completedTask(index, false);
-    taskManager.storeTasksInLocalStorage();
+    taskManager.completeTask(index, false);
+    taskManager.saveTasks();
   }
 };
 

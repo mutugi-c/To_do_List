@@ -27,8 +27,12 @@ class ManageTasks {
   }
 
   completeTask(index, completed) {
-    this.taskArr[index].completed = completed;
-    this.saveTasks();
+    if (this.taskArr[index]) {
+      this.taskArr[index].completed = completed;
+      this.saveTasks();
+    } else {
+      console.error(`Invalid index ${index} for completeTask`);
+    }
   }
 
   updateIndexes() {
