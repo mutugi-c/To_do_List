@@ -64,7 +64,8 @@ function populateTaskList(arr) {
     // Add event listener to check-button
     const checkButton = toDoItem.querySelector('.check-button');
     checkButton.addEventListener('change', () => {
-      const index = toDoItem.dataset.index;
+      const { dataset } = toDoItem;
+      const { index } = dataset;
       toggleCompleted(toDoList, taskManager, index);
     });
 
