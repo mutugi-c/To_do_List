@@ -1,21 +1,22 @@
 import './styles.css';
-import ManageTasks from '../modules/manage_tasks.js';
+import ManageTasks from './modules/manage_tasks.js';
+import toggleCompleted from './modules/toggle_completed.js';
+
+const taskManager = new ManageTasks([]);
 
 const toDoList = document.getElementById('to-do-list');
 const toDoForm = document.getElementById('to-do-form');
 const toDoInput = document.getElementById('to-do-input');
-
-const taskManager = new ManageTasks([]);
 
 function populateTaskList(arr) {
   arr.forEach((task) => {
     const toDoItem = document.createElement('li');
     toDoItem.classList.add('to-do-item');
     toDoItem.innerHTML = `
-    <input type="checkbox" class="check-button" />
-    <span class="task-description" contenteditable="true">${task.description}</span>
-    <span class="fas fa-ellipsis-v"></span>
-    <span class="fas fa-trash trash-icon hide"></span>
+    <input type='checkbox' class='check-button' />
+    <span class='task-description' contenteditable='true'>${task.description}</span>
+    <span class='fas fa-ellipsis-v'></span>
+    <span class='fas fa-trash trash-icon hide'></span>
     `;
     toDoList.appendChild(toDoItem);
 
@@ -60,9 +61,33 @@ function populateTaskList(arr) {
       toDoItem.remove();
     });
 
+    // Add event listener to check-button
+    const checkButton = toDoItem.querySelector('.check-button');
+    checkButton.addEventListener('change', () => {
+      const { dataset } = toDoItem;
+      const { index } = dataset;
+      toggleCompleted(toDoList, taskManager, index);
+    });
+
     toDoItem.dataset.index = taskManager.taskArr.indexOf(task);
   });
 }
+
+// Call function to update completed status
+toggleCompleted(toDoList, taskManager);
+
+const clearCompleted = () => {
+  const completedTasks = taskManager.taskArr.filter((task) => task.completed);
+  completedTasks.forEach((task) => taskManager.removeTask(task.index));
+  document
+    .querySelectorAll('.completed')
+    .forEach((completedTask) => completedTask.remove());
+  taskManager.saveTasks();
+  taskManager.updateIndexes();
+};
+
+const clearCompletedButton = document.getElementById('clear-completed');
+clearCompletedButton.addEventListener('click', clearCompleted);
 
 // Add event listener for submission
 toDoForm.addEventListener('submit', (event) => {
@@ -77,25 +102,5 @@ toDoForm.addEventListener('submit', (event) => {
     populateTaskList(newTask);
   }
 });
-
-// Update completed status
-const toggleCompleted = (toDoList, taskManager, index) => {
-  const toDoItem = toDoList.querySelector(`[data-index="${index}"]`);
-  if (!toDoItem) {
-    return;
-  }
-  const checkButton = toDoItem.querySelector('.check-button');
-  if (checkButton.checked) {
-    toDoItem.classList.add('completed');
-    taskManager.completedTask(index, true);
-    taskManager.storeTasksInLocalStorage();
-  } else {
-    toDoItem.classList.remove('completed');
-    taskManager.completedTask(index, false);
-    taskManager.storeTasksInLocalStorage();
-  }
-};
-
-toggleCompleted(toDoList, taskManager);
 
 populateTaskList(taskManager.taskArr);

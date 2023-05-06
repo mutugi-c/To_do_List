@@ -1,6 +1,10 @@
 class ManageTasks {
   constructor() {
     this.taskArr = JSON.parse(localStorage.getItem('tasks')) || [];
+    this.taskArr.forEach((task) => {
+      task.completed = false;
+    });
+    this.saveTasks();
   }
 
   addTask(description) {
@@ -14,7 +18,7 @@ class ManageTasks {
   }
 
   removeTask(index) {
-    this.taskArr.splice(index, 1);
+    this.taskArr = this.taskArr.filter((task) => task.index !== index);
     this.updateIndexes();
     this.saveTasks();
   }
@@ -27,8 +31,10 @@ class ManageTasks {
   }
 
   completeTask(index, completed) {
-    this.taskArr[index].completed = completed;
-    this.saveTasks();
+    if (this.taskArr[index]) {
+      this.taskArr[index].completed = completed;
+      this.saveTasks();
+    }
   }
 
   updateIndexes() {
