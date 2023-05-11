@@ -145,7 +145,7 @@ Example: To build for production with webpack, use the folowing commands:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **An improved user interface**
+- **Implementation of an improved user interface**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
