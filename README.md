@@ -96,10 +96,9 @@ Install git to work on this project with:
 
 ### Usage
 
-To run the project have Node.js installed, and execute the following commands to initialize npm, install webpack locally, and install the webpack-cli (the tool used to run webpack on the command line)::
+To run the project have Node.js installed, and execute the following commands to install the webpack-cli (the tool used to run webpack on the command line) if it is not installed:
 
 ```sh
-  $ npm init -y
   $ npm install webpack webpack-cli --save-dev
 ```
 You can also use live reloading with webpack-dev-server using the following commands to install the web server, and run it: 
@@ -112,13 +111,18 @@ Go to your browser and type localhost:8080. Your Application should run
 
 ### Run tests
 
-To run tests, run the HTML document in Google Chrome and right-click the HTML element you want to inspect. Click on "Inspect" and you will have the tools to run, analyze, and even debug the code
+To run the project have Node.js installed, and execute the following commands to install the webpack-cli (the tool used to run webpack on the command line) if it is not installed:
+
+```sh
+  $ npm install --save-dev jest
+  $ npm test
+```
 
 ### Deployment
 
 You can deploy this project using build tools such as webpack, Rollup, Parcel, e.t.c or even deploy using Github pages:
 
-Example: To build for production with webpack, use the folowing commands:
+Example: To build for production with webpack, use the following commands:
 
 - Initialise npm package
 - ensure that webpack is installed
